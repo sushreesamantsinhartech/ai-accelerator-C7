@@ -20,7 +20,7 @@ def create_openrouter_client(api_key: str) -> Any:
     """Create an OpenAI SDK client configured for OpenRouter."""
     from openai import OpenAI
 
-    # TODO 4: return OpenAI(base_url=OPENROUTER_BASE_URL, api_key=api_key)
+    # TODO 4: return an openai client using openrouter's base url
     raise NotImplementedError
 
 
@@ -55,7 +55,6 @@ def ask_text_model(
     # model=model
     # messages=build_text_messages(prompt, history)
     # extra_body={"provider": {"data_collection": "deny"}}
-    response = None
 
     # TODO 8: return response.choices[0].message.content or an empty string.
     raise NotImplementedError

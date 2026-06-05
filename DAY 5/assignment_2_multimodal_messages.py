@@ -7,23 +7,19 @@ from typing import Any
 
 
 def image_file_to_data_url(file_path: str) -> str:
-    """Convert an image file path into a base64 data URL."""
     path = Path(file_path)
     mime_type, _ = mimetypes.guess_type(path.name)
     if not mime_type or not mime_type.startswith("image/"):
         raise ValueError("Please provide a supported image file.")
 
-    # TODO 1: read the image bytes.
-    # TODO 2: base64 encode the bytes and decode to text.
-    # TODO 3: return f"data:{mime_type};base64,{encoded_text}".
-    raise NotImplementedError
-
+    encoded_text = base64.b64encode(path.read_bytes()).decode("utf-8")
+    return f"data:{mime_type};base64,{encoded_text}"
 
 def get_uploaded_file_path(file_value: Any) -> str | None:
     """Normalize common Gradio file values into a path string."""
-    # TODO 4: if file_value is a string, return it.
-    # TODO 5: if file_value is a dict, return file_value["path"] or file_value["name"].
-    # TODO 6: otherwise try file_value.path or file_value.name.
+    # TODO 1: if file_value is a string, return it.
+    # TODO 2: if file_value is a dict, return file_value["path"] or file_value["name"].
+    # TODO 3: otherwise try file_value.path or file_value.name.
     raise NotImplementedError
 
 
@@ -39,9 +35,9 @@ def build_user_content(message: dict[str, Any]) -> str | list[dict[str, Any]]:
     for file_value in files:
         file_path = get_uploaded_file_path(file_value)
         if file_path:
-            # TODO 7: append an image_url content block.
+            # TODO 4: append an image_url content block.
             # Shape:
-            # {"type": "image_url", "image_url": {"url": image_file_to_data_url(file_path)}}
+            # {"type": "image_url", "image_url": {"url": <get url from file path using image_file_to_data_url>}}
             pass
 
     if not content:
@@ -64,7 +60,7 @@ def build_multimodal_messages(
         role = item.get("role")
         content = item.get("content")
         if role in {"user", "assistant"} and isinstance(content, str) and content.strip():
-            # TODO 8: append prior text messages.
+            # TODO 5: append prior text messages.
             pass
 
     # TODO 9: append the latest user message using build_user_content(current_message).
